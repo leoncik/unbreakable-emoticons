@@ -1,0 +1,132 @@
+---
+import { makeUnbreakable, type Emoticon } from "../data/emoticons";
+
+interface Props {
+  emoticon: Emoticon;
+}
+
+const { emoticon } = Astro.props;
+const unbreakable = makeUnbreakable(emoticon.emoticon);
+---
+
+<div class="card" data-emoticon={unbreakable} data-copied="false">
+  <div class="content">
+    <div class="emoticon">{emoticon.emoticon}</div>
+
+    <button class="copy-button" type="button">
+      <span class="label">Copy</span>
+    </button>
+  </div>
+
+  <div class="sparkle-overlay">✨</div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background: var(--card-bg, #fff);
+    cursor: pointer;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(124, 58, 237, 0.4);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+  }
+
+  .card[data-copied="true"] {
+    border-color: #6ee7b7;
+    background: rgba(110, 231, 183, 0.12);
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .emoticon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    user-select: all;
+  }
+
+  .copy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 999px;
+    border: none;
+    background: rgba(124, 58, 237, 0.15);
+    color: #4c1d95;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .card:hover .copy-button {
+    background: #7c3aed;
+    color: #fff;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+  }
+
+  .icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 2;
+  }
+
+  .check-icon {
+    display: none;
+  }
+
+  .card[data-copied="true"] .copy-icon {
+    display: none;
+  }
+
+  .card[data-copied="true"] .check-icon {
+    display: inline-flex;
+  }
+
+  .sparkle-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .card[data-copied="true"] .sparkle-overlay {
+    animation: ping 0.8s ease-out;
+    opacity: 0.5;
+  }
+
+  @keyframes ping {
+    from {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    to {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+</style>
