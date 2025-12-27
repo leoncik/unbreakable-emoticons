@@ -1,16 +1,52 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { emoticons } from "../data/emoticons";
+import { emoticons, categoryInfo, type Category } from "../data/emoticons";
 import EmoticonCard from "../components/EmoticonCard.astro";
+
+// Group emoticons by category
+const groupedEmoticons = Object.entries(categoryInfo).reduce(
+  (acc, [category]) => {
+    const categoryKey = category as Category;
+    const emoticonsByCategory = emoticons.filter(
+      (e) => e.category === categoryKey
+    );
+    if (emoticonsByCategory.length > 0) {
+      acc.push({
+        category: categoryKey,
+        emoticons: emoticonsByCategory,
+      });
+    }
+    return acc;
+  },
+  [] as Array<{ category: Category; emoticons: typeof emoticons }>
+);
 ---
 
 <Layout>
   <main>
-    {
-      emoticons.map((emoticon) => (
-        <EmoticonCard emoticon={emoticon} />
-      ))
-    }
+    <header class="about">
+      <h1>Unbreakable emoticons</h1>
+      <p>Copy-paste-ready emoticons that stay intact across lines!</p>
+    </header>
+
+    <div class="sections">
+      {
+        groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
+          <section class="category-section">
+            <h2 class="category-title">
+              <span class="category-emoji">{categoryInfo[category].emoji}</span>
+              <span>{categoryInfo[category].label}</span>
+              <span class="emoticon-count">({catEmoticons.length})</span>
+            </h2>
+            <div class="gallery">
+              {catEmoticons.map((emoticon) => (
+                <EmoticonCard emoticon={emoticon} />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
   </main>
 </Layout>
 
@@ -22,41 +58,76 @@ import EmoticonCard from "../components/EmoticonCard.astro";
     if (!text) return;
 
     navigator.clipboard.writeText(text);
-
-    card.dataset.copied = 'true';
-
+    card.dataset.copied = "true";
     setTimeout(() => {
-      card.dataset.copied = 'false';
+      card.dataset.copied = "false";
     }, COPY_DURATION);
   }
 
-  document.addEventListener('click', (e) => {
-    const card = e.target.closest('.card');
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest(".card");
     if (!card) return;
-
     copyFromCard(card);
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-
-    const card = e.target.closest('.card');
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const card = e.target.closest(".card");
     if (!card) return;
-
     e.preventDefault();
     copyFromCard(card);
   });
 </script>
 
-
 <style>
   main {
+    max-width: 1180px;
+    padding: 32px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000;
+  }
+
+  .category-emoji {
+    font-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .emoticon-count {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #999;
+  }
+
+  .gallery {
     display: grid;
     gap: 16px;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	max-width: 1180px;
-	padding: 32px;
-	margin-left: auto;
-	margin-right: auto;
   }
 </style>

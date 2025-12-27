@@ -38,7 +38,7 @@ export const categoryInfo: Record<
   Category,
   { label: string; emoji: string; color: string }
 > = {
-  smiley: { label: "Smiley", emoji: "😀", color: "kawaii-yellow" },
+  smiley: { label: "Smiley", emoji: ":⁠-⁠)", color: "kawaii-yellow" },
   happy: { label: "Happy", emoji: "😊", color: "kawaii-yellow" },
   sad: { label: "Sad", emoji: "😢", color: "kawaii-sky" },
   blushing: { label: "Blushing", emoji: "😳", color: "kawaii-pink" },
