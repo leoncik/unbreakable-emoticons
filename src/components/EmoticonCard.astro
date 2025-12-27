@@ -33,6 +33,14 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
       transform 0.25s ease,
       box-shadow 0.25s ease,
       border-color 0.25s ease;
+
+    /* Prevent text selection on click */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+
+    /* Prevent tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
   }
 
   .card:hover {
@@ -55,6 +63,11 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
     margin-bottom: 0.75rem;
     font-weight: 500;
     user-select: all;
+
+    /* Ensure user cannot accidentally select */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 
   .copy-button {
@@ -110,13 +123,12 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
     align-items: center;
     justify-content: center;
     font-size: 2.5rem;
-    opacity: 0;
     pointer-events: none;
+    opacity: 0;
   }
 
   .card[data-copied="true"] .sparkle-overlay {
-    animation: ping 0.8s ease-out;
-    opacity: 0.5;
+    animation: ping 0.8s ease-out forwards;
   }
 
   @keyframes ping {
