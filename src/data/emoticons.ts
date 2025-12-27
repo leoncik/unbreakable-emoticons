@@ -1,9 +1,15 @@
 // Word Joiner character to prevent line breaks
 const WJ = "\u2060";
 
-// Wrap emoticon with word joiners between each character
+// Non-breaking space character to prevent line breaks
+const NBSP = "\u00A0";
+
+// Wrap emoticon with word joiners between each character and replace spaces with non-breaking spaces.
 export function makeUnbreakable(emoticon: string): string {
-  return emoticon.split("").join(WJ);
+  return emoticon
+    .split("")
+    .map((character) => (character === " " ? NBSP : character))
+    .join(WJ);
 }
 
 export interface Emoticon {
