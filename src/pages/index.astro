@@ -8,39 +8,55 @@ import EmoticonCard from "../components/EmoticonCard.astro";
   <main>
     {
       emoticons.map((emoticon) => (
-        <EmoticonCard client:visible emoticon={emoticon} />
+        <EmoticonCard emoticon={emoticon} />
       ))
     }
   </main>
 </Layout>
 
 <script is:inline>
-  document.addEventListener("click", async (e) => {
-    const button = e.target.closest(".copy-button");
-    if (!button) return;
+  const COPY_DURATION = 1500;
 
-    const card = button.closest(".card");
-    if (!card) return;
-
+  function copyFromCard(card) {
     const text = card.dataset.emoticon;
     if (!text) return;
 
-    await navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text);
 
-    card.dataset.copied = "true";
-    button.querySelector(".label").textContent = "Copied!";
+    card.dataset.copied = 'true';
 
     setTimeout(() => {
-      card.dataset.copied = "false";
-      button.querySelector(".label").textContent = "Copy";
-    }, 1500);
+      card.dataset.copied = 'false';
+    }, COPY_DURATION);
+  }
+
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+
+    copyFromCard(card);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+
+    const card = e.target.closest('.card');
+    if (!card) return;
+
+    e.preventDefault();
+    copyFromCard(card);
   });
 </script>
+
 
 <style>
   main {
     display: grid;
     gap: 16px;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	max-width: 1180px;
+	padding: 32px;
+	margin-left: auto;
+	margin-right: auto;
   }
 </style>
