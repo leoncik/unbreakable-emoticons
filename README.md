@@ -8,7 +8,7 @@ Copy-paste-ready emoticons that never break across lines.
 
 `unbreakable-emoticons` is a small collection of text emoticons made unbreakable across line wraps by using the Unicode _Word Joiner_ (WJ, `U+2060`) character between their parts.
 
-No more half-faces on one line and the rest on the next. ☆⁠ ヾ ⁠(⁠\*⁠´⁠・⁠∀⁠・⁠)⁠ ノ ⁠☆
+No more half-faces on one line and the rest on the next. ☆⁠ヾ⁠(⁠*⁠´⁠・⁠∀⁠・⁠)⁠ノ⁠☆
 
 ## How to use
 
