@@ -39,18 +39,38 @@ export const categoryInfo: Record<
   { label: string; emoji: string; color: string }
 > = {
   smiley: { label: "Smiley", emoji: ":⁠-⁠)", color: "kawaii-yellow" },
-  happy: { label: "Happy", emoji: "😊", color: "kawaii-yellow" },
-  sad: { label: "Sad", emoji: "😢", color: "kawaii-sky" },
-  blushing: { label: "Blushing", emoji: "😳", color: "kawaii-pink" },
-  angry: { label: "Angry", emoji: "😠", color: "kawaii-peach" },
-  demon: { label: "Demon", emoji: "👿", color: "kawaii-lavender" },
-  love: { label: "Love", emoji: "💕", color: "kawaii-pink" },
-  sparkles: { label: "Sparkles", emoji: "✨", color: "kawaii-yellow" },
-  shocked: { label: "Shocked", emoji: "🙀", color: "kawaii-sky" },
-  tired: { label: "Tired", emoji: "😴", color: "kawaii-lavender" },
-  celebration: { label: "Celebration", emoji: "🎉", color: "kawaii-peach" },
-  animals: { label: "Animals", emoji: "🐱", color: "kawaii-mint" },
-  shrugs: { label: "Shrugs", emoji: "🤷", color: "kawaii-mint" },
+  happy: { label: "Happy", emoji: "( ^ω^ )", color: "kawaii-yellow" },
+  sad: { label: "Sad", emoji: "(｡•́︿•̀｡)", color: "kawaii-sky" },
+  blushing: {
+    label: "Blushing",
+    emoji: "(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄",
+    color: "kawaii-pink",
+  },
+  angry: { label: "Angry", emoji: "（⇀‸↼‶)", color: "kawaii-peach" },
+  demon: { label: "Demon", emoji: "↜(•w•)", color: "kawaii-lavender" },
+  love: { label: "Love", emoji: "♡⁠(⁠●⁠´⁠ω⁠`⁠●⁠)⁠♡", color: "kawaii-pink" },
+  sparkles: {
+    label: "Sparkles",
+    emoji: "☆⁠*⁠:⁠.⁠｡⁠.⁠o⁠(⁠≧⁠▽⁠≦⁠)⁠o⁠.⁠｡⁠.⁠:⁠*⁠☆",
+    color: "kawaii-yellow",
+  },
+  shocked: {
+    label: "Shocked",
+    emoji: "Σ⁠(⁠°⁠△⁠°⁠|⁠|⁠|⁠)",
+    color: "kawaii-sky",
+  },
+  tired: {
+    label: "Tired",
+    emoji: "(⁠￣⁠o⁠￣⁠)⁠ ⁠.⁠ ⁠z⁠ ⁠Z",
+    color: "kawaii-lavender",
+  },
+  celebration: {
+    label: "Celebration",
+    emoji: "♪⁠ヽ⁠(⁠´⁠▽⁠`⁠)⁠/",
+    color: "kawaii-peach",
+  },
+  animals: { label: "Animals", emoji: "ʕ⁠•⁠ᴥ⁠•⁠ʔ", color: "kawaii-mint" },
+  shrugs: { label: "Shrugs", emoji: "¯\\_(ツ)_/¯", color: "kawaii-mint" },
 };
 
 export const emoticons: Emoticon[] = [
