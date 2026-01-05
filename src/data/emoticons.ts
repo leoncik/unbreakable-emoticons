@@ -30,7 +30,8 @@ export type Category =
   | "tired"
   | "celebration"
   | "animals"
-  | "shrugs";
+  | "shrugs"
+  | "table-flip";
 
 export const categoryInfo: Record<
   Category,
@@ -96,6 +97,11 @@ export const categoryInfo: Record<
     label: "Shrugs",
     emoji: "¯\\_(ツ)_/¯",
     navIcon: "🤷",
+  },
+  "table-flip": {
+    label: "Table flip",
+    emoji: "(⁠╯⁠°⁠□⁠°⁠）⁠╯⁠︵⁠ ⁠┻⁠━⁠┻",
+    navIcon: "🪑💥",
   },
 };
 
@@ -755,7 +761,7 @@ export const emoticons: Emoticon[] = [
     category: "animals",
   },
 
-  // Shrugs & Gestures
+  // Shrugs
   {
     emoticon: "¯\\_(ツ)_/¯",
     category: "shrugs",
@@ -780,41 +786,30 @@ export const emoticons: Emoticon[] = [
     emoticon: "( ´_ゝ`)",
     category: "shrugs",
   },
-  {
-    emoticon: "(っ˘з˘⌣˘)",
-    category: "shrugs",
-  },
-  {
-    emoticon: "( ˘︹˘ )",
-    category: "shrugs",
-  },
-  {
-    emoticon: "(´∀`)b",
-    category: "shrugs",
-  },
-  {
-    emoticon: "d(´▽`)b",
-    category: "shrugs",
-  },
-  {
-    emoticon: "(；一_一)",
-    category: "shrugs",
-  },
-  {
-    emoticon: "(⌐■_■)",
-    category: "shrugs",
-  },
-  {
-    emoticon: "( •_•)>⌐■-■",
-    category: "shrugs",
-  },
-  {
-    emoticon: "(ง'̀-'́)ง",
-    category: "shrugs",
-  },
+  // Table flip
   {
     emoticon: "(╯°□°）╯︵ ┻━┻",
-    category: "shrugs",
+    category: "table-flip",
+  },
+  {
+    emoticon: "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻",
+    category: "table-flip",
+  },
+  {
+    emoticon: "┻┻ ︵㇏(òДó㇏)",
+    category: "table-flip",
+  },
+  {
+    emoticon: "(ノ-_-)ノ・・・~~┻━┻",
+    category: "table-flip",
+  },
+  {
+    emoticon: "(ﾉ´･ω･)ﾉ ﾐ ┸━┸",
+    category: "table-flip",
+  },
+  {
+    emoticon: "(┛◉Д◉) ┛彡┻━┻",
+    category: "table-flip",
   },
 ];
 
@@ -831,4 +826,5 @@ export const categories: Category[] = [
   "celebration",
   "animals",
   "shrugs",
+  "table-flip",
 ];
