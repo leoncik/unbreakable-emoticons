@@ -37,7 +37,7 @@ const { groupedEmoticons } = Astro.props;
         groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
           <li>
             <a href={`#${category}`} class="nav-link">
-              <span class="nav-icon">UwU</span>
+              <span class="nav-icon">{categoryInfo[category].navIcon}</span>
               <span class="nav-label">{categoryInfo[category].label}</span>
               <span class="nav-count">{catEmoticons.length}</span>
             </a>

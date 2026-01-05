@@ -36,41 +36,81 @@ export type Category =
 
 export const categoryInfo: Record<
   Category,
-  { label: string; emoji: string; color: string }
+  { label: string; emoji: string; navIcon: string; color: string }
 > = {
-  smiley: { label: "Smiley", emoji: ":⁠-⁠)", color: "kawaii-yellow" },
-  happy: { label: "Happy", emoji: "( ^ω^ )", color: "kawaii-yellow" },
-  sad: { label: "Sad", emoji: "(｡•́︿•̀｡)", color: "kawaii-sky" },
+  smiley: {
+    label: "Smiley",
+    emoji: ":⁠-⁠)",
+    navIcon: ":⁠-⁠)",
+    color: "kawaii-yellow",
+  },
+  happy: {
+    label: "Happy",
+    emoji: "( ^ω^ )",
+    navIcon: "😊",
+    color: "kawaii-yellow",
+  },
+  sad: { label: "Sad", emoji: "(｡•́︿•̀｡)", navIcon: "😢", color: "kawaii-sky" },
   blushing: {
     label: "Blushing",
     emoji: "(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄",
+    navIcon: "😳",
     color: "kawaii-pink",
   },
-  angry: { label: "Angry", emoji: "（⇀‸↼‶)", color: "kawaii-peach" },
-  demon: { label: "Demon", emoji: "↜(•w•)", color: "kawaii-lavender" },
-  love: { label: "Love", emoji: "♡⁠(⁠●⁠´⁠ω⁠`⁠●⁠)⁠♡", color: "kawaii-pink" },
+  angry: {
+    label: "Angry",
+    emoji: "（⇀‸↼‶)",
+    navIcon: "😠",
+    color: "kawaii-peach",
+  },
+  demon: {
+    label: "Demon",
+    emoji: "↜(•w•)",
+    navIcon: "👿",
+    color: "kawaii-lavender",
+  },
+  love: {
+    label: "Love",
+    emoji: "♡⁠(⁠●⁠´⁠ω⁠`⁠●⁠)⁠♡",
+    navIcon: "💕",
+    color: "kawaii-pink",
+  },
   sparkles: {
     label: "Sparkles",
     emoji: "☆⁠*⁠:⁠.⁠｡⁠.⁠o⁠(⁠≧⁠▽⁠≦⁠)⁠o⁠.⁠｡⁠.⁠:⁠*⁠☆",
+    navIcon: "✨",
     color: "kawaii-yellow",
   },
   shocked: {
     label: "Shocked",
     emoji: "Σ⁠(⁠°⁠△⁠°⁠|⁠|⁠|⁠)",
+    navIcon: "🙀",
     color: "kawaii-sky",
   },
   tired: {
     label: "Tired",
     emoji: "(⁠￣⁠o⁠￣⁠)⁠ ⁠.⁠ ⁠z⁠ ⁠Z",
+    navIcon: "😴",
     color: "kawaii-lavender",
   },
   celebration: {
     label: "Celebration",
     emoji: "♪⁠ヽ⁠(⁠´⁠▽⁠`⁠)⁠/",
+    navIcon: "🎉",
     color: "kawaii-peach",
   },
-  animals: { label: "Animals", emoji: "ʕ⁠•⁠ᴥ⁠•⁠ʔ", color: "kawaii-mint" },
-  shrugs: { label: "Shrugs", emoji: "¯\\_(ツ)_/¯", color: "kawaii-mint" },
+  animals: {
+    label: "Animals",
+    emoji: "ʕ⁠•⁠ᴥ⁠•⁠ʔ",
+    navIcon: "🐱",
+    color: "kawaii-mint",
+  },
+  shrugs: {
+    label: "Shrugs",
+    emoji: "¯\\_(ツ)_/¯",
+    navIcon: "🤷",
+    color: "kawaii-mint",
+  },
 };
 
 export const emoticons: Emoticon[] = [
