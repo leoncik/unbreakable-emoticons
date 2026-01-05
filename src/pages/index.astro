@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { emoticons, categoryInfo, type Category } from "../data/emoticons";
 import EmoticonCard from "../components/EmoticonCard.astro";
+import Sidenav from "../components/Sidenav.astro";
 
 // Group emoticons by category
 const groupedEmoticons = Object.entries(categoryInfo).reduce(
@@ -23,31 +24,34 @@ const groupedEmoticons = Object.entries(categoryInfo).reduce(
 ---
 
 <Layout>
-  <main>
-    <header class="about">
-      <h1>Unbreakable emoticons</h1>
-      <p>Copy-paste-ready emoticons that stay intact across lines!</p>
-    </header>
-
-    <div class="sections">
-      {
-        groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
-          <section class="category-section">
-            <h2 class="category-title">
-              <span class="category-emoji">{categoryInfo[category].emoji}</span>
-              <span>{categoryInfo[category].label}</span>
-              <span class="emoticon-count">({catEmoticons.length})</span>
-            </h2>
-            <div class="gallery">
-              {catEmoticons.map((emoticon) => (
-                <EmoticonCard emoticon={emoticon} />
-              ))}
-            </div>
-          </section>
-        ))
-      }
-    </div>
-  </main>
+  <div class="wrapper">
+    <Sidenav groupedEmoticons={groupedEmoticons} />
+    <main>
+      <header class="about">
+        <h1>Unbreakable emoticons</h1>
+        <p>Copy-paste-ready emoticons that stay intact across lines!</p>
+      </header>
+  
+      <div class="sections">
+        {
+          groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
+            <section class="category-section" id={category}>
+              <h2 class="category-title">
+                <span class="category-emoji">{categoryInfo[category].emoji}</span>
+                <span>{categoryInfo[category].label}</span>
+                <span class="emoticon-count">({catEmoticons.length})</span>
+              </h2>
+              <div class="gallery">
+                {catEmoticons.map((emoticon) => (
+                  <EmoticonCard emoticon={emoticon} />
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </main>
+  </div>
 </Layout>
 
 <script is:inline>
@@ -80,7 +84,12 @@ const groupedEmoticons = Object.entries(categoryInfo).reduce(
 </script>
 
 <style>
+  .wrapper {
+    display: flex;
+  }
+
   main {
+    flex: 1 1 0%;
     max-width: 1180px;
     padding: 32px;
     margin-left: auto;
