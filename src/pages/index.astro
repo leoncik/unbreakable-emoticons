@@ -31,13 +31,15 @@ const groupedEmoticons = Object.entries(categoryInfo).reduce(
         <h1>Unbreakable emoticons</h1>
         <p>Copy-paste-ready emoticons that stay intact across lines!</p>
       </header>
-  
+
       <div class="sections">
         {
           groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
             <section class="category-section" id={category}>
               <h2 class="category-title">
-                <span class="category-emoji">{categoryInfo[category].emoji}</span>
+                <span class="category-emoji">
+                  {categoryInfo[category].emoji}
+                </span>
                 <span>{categoryInfo[category].label}</span>
                 <span class="emoticon-count">({catEmoticons.length})</span>
               </h2>
@@ -96,10 +98,22 @@ const groupedEmoticons = Object.entries(categoryInfo).reduce(
     margin-right: auto;
   }
 
+  h1 {
+    font-size: 3rem;
+    background-image: linear-gradient(
+      to right,
+      rgb(236, 147, 191),
+      rgb(224, 194, 240),
+      rgb(179, 230, 213)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
   .about {
     text-align: center;
     margin-bottom: 48px;
-    font-family: system-ui, sans-serif;
   }
 
   .sections {
@@ -120,7 +134,7 @@ const groupedEmoticons = Object.entries(categoryInfo).reduce(
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #000;
+    color: var(--accent-text-color);
   }
 
   .category-emoji {

@@ -81,12 +81,19 @@
     font: inherit;
   }
 
+  :root {
+    --default-text-color: hsl(279, 20%, 45%);
+    --accent-text-color: hsl(279, 30%, 25%);
+    --12px: 0.75rem;
+  }
+
   html,
   body {
     margin: 0;
     width: 100%;
     height: 100%;
     background-color: rgb(251, 248, 250);
+    color: var(--default-text-color);
   }
 
   html {
