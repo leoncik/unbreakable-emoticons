@@ -64,5 +64,34 @@
 
   a {
     text-decoration: none;
+    color: inherit;
   }
 </style>
+
+<script is:inline>
+  const sections = document.querySelectorAll(".category-section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+
+          navLinks.forEach((link) => {
+            link.classList.toggle(
+              "is-active",
+              link.getAttribute("href") === `#${id}`
+            );
+          });
+        }
+      });
+    },
+    {
+      rootMargin: "-40% 0px -50% 0px",
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>
