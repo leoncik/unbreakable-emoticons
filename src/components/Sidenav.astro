@@ -105,8 +105,11 @@ const { groupedEmoticons } = Astro.props;
 
   .nav-link {
     display: flex;
-    padding: 8px;
+    align-items: center;
     gap: 0.75rem;
+    padding: 8px;
+    height: 2rem;
+    font-size: var(--14px);
     border-radius: 16px;
     transition:
       background-color 0.2s ease,
@@ -123,12 +126,17 @@ const { groupedEmoticons } = Astro.props;
     background-color: hsl(280, 60%, 90%);
   }
 
+  .nav-icon {
+    font-size: var(--18px);
+  }
+
   .nav-label {
     color: var(--accent-text-color);
   }
 
   .nav-count {
     margin-left: auto;
+    color: var(--accent-text-color);
     opacity: 0.7;
     font-size: var(--12px);
   }
