@@ -1,26 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { emoticons, categoryInfo, type Category } from "../data/emoticons";
+
 import EmoticonCard from "../components/EmoticonCard.astro";
 import Sidenav from "../components/Sidenav.astro";
+import { emoticonsByCategory } from "../data";
+import { categories, categoryInfo } from "../data/categories";
 
-// Group emoticons by category
-const groupedEmoticons = Object.entries(categoryInfo).reduce(
-  (acc, [category]) => {
-    const categoryKey = category as Category;
-    const emoticonsByCategory = emoticons.filter(
-      (e) => e.category === categoryKey
-    );
-    if (emoticonsByCategory.length > 0) {
-      acc.push({
-        category: categoryKey,
-        emoticons: emoticonsByCategory,
-      });
-    }
-    return acc;
-  },
-  [] as Array<{ category: Category; emoticons: typeof emoticons }>
-);
+const groupedEmoticons = categories
+  .map((category) => ({
+    category,
+    emoticons:
+      emoticonsByCategory[category]?.map((emoticon) => ({
+        emoticon,
+        category,
+      })) || [],
+  }))
+  .filter(({ emoticons }) => emoticons.length > 0);
 ---
 
 <Layout>
