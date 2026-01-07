@@ -12,7 +12,11 @@ export type Category =
   | "celebration"
   | "animals"
   | "shrugs"
-  | "tableFlip";
+  | "tableFlip"
+  | "greeting"
+  | "writing"
+  | "facepalm"
+  | "lenny";
 
 export const categoryInfo: Record<
   Category,
@@ -84,6 +88,26 @@ export const categoryInfo: Record<
     emoji: "(⁠╯⁠°⁠□⁠°⁠）⁠╯⁠︵⁠ ⁠┻⁠━⁠┻",
     navIcon: "🪑💥",
   },
+  greeting: {
+    label: "Greeting",
+    emoji: "(・∀・)ノ",
+    navIcon: "👋",
+  },
+  writing: {
+    label: "Writing",
+    emoji: "___〆(・∀・)",
+    navIcon: "✍️",
+  },
+  facepalm: {
+    label: "Facepalm",
+    emoji: "(－‸ლ)",
+    navIcon: "🤦",
+  },
+  lenny: {
+    label: "Lenny",
+    emoji: "( ͡° ͜ʖ ͡°)",
+    navIcon: "🍆",
+  },
 };
 
 export const categories: Category[] = [
@@ -101,4 +125,8 @@ export const categories: Category[] = [
   "animals",
   "shrugs",
   "tableFlip",
+  "greeting",
+  "writing",
+  "lenny",
+  "facepalm"
 ];

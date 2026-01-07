@@ -13,6 +13,10 @@ import { shrugs } from "./shrugs";
 import { sparkles } from "./sparkles";
 import { tired } from "./tired";
 import { tableFlip } from "./tableFlip";
+import { greeting } from "./greeting";
+import { writing } from "./writing";
+import { facepalm } from "./facepalm";
+import { lenny } from "./lenny";
 
 // Word Joiner character to prevent line breaks
 const WJ = "\u2060";
@@ -51,6 +55,10 @@ export const emoticons: Emoticon[] = [
   ...animals.map((e) => ({ emoticon: e, category: "animals" as const })),
   ...shrugs.map((e) => ({ emoticon: e, category: "shrugs" as const })),
   ...tableFlip.map((e) => ({ emoticon: e, category: "tableFlip" as const })),
+  ...greeting.map((e) => ({ emoticon: e, category: "greeting" as const })),
+  ...writing.map((e) => ({ emoticon: e, category: "writing" as const })),
+  ...lenny.map((e) => ({ emoticon: e, category: "lenny" as const })),
+  ...facepalm.map((e) => ({ emoticon: e, category: "facepalm" as const })),
 ];
 
 export const emoticonsByCategory = {
@@ -68,4 +76,8 @@ export const emoticonsByCategory = {
   animals,
   shrugs,
   tableFlip,
+  greeting,
+  writing,
+  lenny,
+  facepalm
 } as const;
