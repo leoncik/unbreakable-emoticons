@@ -33,20 +33,22 @@ const { groupedEmoticons } = Astro.props;
       >
       <span>Categories</span>
     </div>
-    <p class="nav-list-title">Jump to section</p>
-    <ul class="nav-list">
-      {
-        groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
-          <li>
-            <a href={`#${category}`} class="nav-link">
-              <span class="nav-icon">{categoryInfo[category].navIcon}</span>
-              <span class="nav-label">{categoryInfo[category].label}</span>
-              <span class="nav-count">{catEmoticons.length}</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="nav-list-wrapper">
+      <p class="nav-list-title">Jump to section</p>
+      <ul class="nav-list">
+        {
+          groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
+            <li>
+              <a href={`#${category}`} class="nav-link">
+                <span class="nav-icon">{categoryInfo[category].navIcon}</span>
+                <span class="nav-label">{categoryInfo[category].label}</span>
+                <span class="nav-count">{catEmoticons.length}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </nav>
 </div>
 
@@ -63,10 +65,6 @@ const { groupedEmoticons } = Astro.props;
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-
-    /* We never know when scrollbar a wild scrollbar may appear… */
-    scrollbar-gutter: stable;
   }
 
   .sparkle-svg {
@@ -96,6 +94,13 @@ const { groupedEmoticons } = Astro.props;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+  }
+
+  .nav-list-wrapper {
+    overflow-y: auto;
+
+    /* We never know when scrollbar a wild scrollbar may appear… */
+    scrollbar-gutter: stable;
   }
 
   .nav-list-title {
