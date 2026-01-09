@@ -52,6 +52,7 @@ const { groupedEmoticons } = Astro.props;
 
 <style>
   .wrapper {
+    height: 100%;
     background-color: rgb(248, 242, 245);
   }
 
@@ -59,6 +60,13 @@ const { groupedEmoticons } = Astro.props;
     position: sticky;
     top: 0;
     width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    /* We never know when scrollbar a wild scrollbar may appear… */
+    scrollbar-gutter: stable;
   }
 
   .sparkle-svg {
@@ -68,6 +76,10 @@ const { groupedEmoticons } = Astro.props;
   }
 
   .header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: rgb(248, 242, 245);
     padding: 16px;
     border-bottom: 1px solid rgba(234, 215, 224, 0.5);
     display: flex;
