@@ -10,13 +10,14 @@ export type Category =
   | "shocked"
   | "tired"
   | "celebration"
-  | "animals"
+  | "cat"
   | "shrugs"
   | "tableFlip"
   | "greeting"
   | "writing"
   | "facepalm"
-  | "lenny";
+  | "lenny"
+  | "hiding";
 
 export const categoryInfo: Record<
   Category,
@@ -73,8 +74,8 @@ export const categoryInfo: Record<
     emoji: "♪⁠ヽ⁠(⁠´⁠▽⁠`⁠)⁠/",
     navIcon: "🎉",
   },
-  animals: {
-    label: "Animals",
+  cat: {
+    label: "Cat",
     emoji: "ʕ⁠•⁠ᴥ⁠•⁠ʔ",
     navIcon: "🐱",
   },
@@ -98,16 +99,22 @@ export const categoryInfo: Record<
     emoji: "___〆(・∀・)",
     navIcon: "✍️",
   },
+    lenny: {
+    label: "Lenny",
+    emoji: "( ͡° ͜ʖ ͡°)",
+    navIcon: "🍆",
+  },
   facepalm: {
     label: "Facepalm",
     emoji: "(－‸ლ)",
     navIcon: "🤦",
   },
-  lenny: {
-    label: "Lenny",
-    emoji: "( ͡° ͜ʖ ͡°)",
-    navIcon: "🍆",
-  },
+    hiding: {
+    label: "Hiding",
+    emoji: "|･ω･)",
+    navIcon: "🫣",
+  }
+
 };
 
 export const categories: Category[] = [
@@ -122,11 +129,12 @@ export const categories: Category[] = [
   "shocked",
   "tired",
   "celebration",
-  "animals",
+  "cat",
   "shrugs",
   "tableFlip",
   "greeting",
   "writing",
   "lenny",
-  "facepalm"
+  "facepalm",
+  "hiding"
 ];

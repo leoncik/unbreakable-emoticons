@@ -3,7 +3,6 @@ import { happy } from "./emoticons/happy";
 import type { Category } from "./categories";
 import { sad } from "./emoticons/sad";
 import { angry } from "./emoticons/angry";
-import { animals } from "./emoticons/animals";
 import { blushing } from "./emoticons/blushing";
 import { celebration } from "./emoticons/celebration";
 import { demon } from "./emoticons/demon";
@@ -17,6 +16,8 @@ import { greeting } from "./emoticons/greeting";
 import { writing } from "./emoticons/writing";
 import { facepalm } from "./emoticons/facepalm";
 import { lenny } from "./emoticons/lenny";
+import { hiding } from "./emoticons/hiding";
+import { cat } from "./emoticons/cat";
 
 // Word Joiner character to prevent line breaks
 const WJ = "\u2060";
@@ -52,13 +53,14 @@ export const emoticons: Emoticon[] = [
     emoticon: e,
     category: "celebration" as const,
   })),
-  ...animals.map((e) => ({ emoticon: e, category: "animals" as const })),
+  ...cat.map((e) => ({ emoticon: e, category: "cat" as const })),
   ...shrugs.map((e) => ({ emoticon: e, category: "shrugs" as const })),
   ...tableFlip.map((e) => ({ emoticon: e, category: "tableFlip" as const })),
   ...greeting.map((e) => ({ emoticon: e, category: "greeting" as const })),
   ...writing.map((e) => ({ emoticon: e, category: "writing" as const })),
   ...lenny.map((e) => ({ emoticon: e, category: "lenny" as const })),
   ...facepalm.map((e) => ({ emoticon: e, category: "facepalm" as const })),
+  ...hiding.map((e) => ({ emoticon: e, category: "hiding" as const })),
 ];
 
 export const emoticonsByCategory = {
@@ -73,11 +75,12 @@ export const emoticonsByCategory = {
   shocked,
   tired,
   celebration,
-  animals,
+  cat,
   shrugs,
   tableFlip,
   greeting,
   writing,
   lenny,
-  facepalm
+  facepalm,
+  hiding
 } as const;
