@@ -65,7 +65,7 @@ export const categoryInfo: Record<
     navIcon: "🙀",
   },
   tired: {
-    label: "Tired",
+    label: "Tired & sleepy",
     emoji: "(⁠￣⁠o⁠￣⁠)⁠ ⁠.⁠ ⁠z⁠ ⁠Z",
     navIcon: "😴",
   },
@@ -76,7 +76,7 @@ export const categoryInfo: Record<
   },
   cat: {
     label: "Cat",
-    emoji: "ʕ⁠•⁠ᴥ⁠•⁠ʔ",
+    emoji: "ฅ₍^•⩊ •マⳊ",
     navIcon: "🐱",
   },
   shrugs: {
