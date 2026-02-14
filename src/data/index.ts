@@ -82,5 +82,5 @@ export const emoticonsByCategory = {
   writing,
   lenny,
   facepalm,
-  hiding
+  hiding,
 } as const;

@@ -33,7 +33,7 @@ export const categoryInfo: Record<
     emoji: "( ^ω^ )",
     navIcon: "😊",
   },
-  sad: { label: "Sad", emoji: "(｡•́︿•̀｡)", navIcon: "😢" },
+  sad: { label: "Sad & crying", emoji: "(｡•́︿•̀｡)", navIcon: "😢" },
   blushing: {
     label: "Blushing",
     emoji: "(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄",
@@ -99,7 +99,7 @@ export const categoryInfo: Record<
     emoji: "___〆(・∀・)",
     navIcon: "✍️",
   },
-    lenny: {
+  lenny: {
     label: "Lenny",
     emoji: "( ͡° ͜ʖ ͡°)",
     navIcon: "🍆",
@@ -109,12 +109,11 @@ export const categoryInfo: Record<
     emoji: "(－‸ლ)",
     navIcon: "🤦",
   },
-    hiding: {
+  hiding: {
     label: "Hiding",
     emoji: "|･ω･)",
     navIcon: "🫣",
-  }
-
+  },
 };
 
 export const categories: Category[] = [
@@ -136,5 +135,5 @@ export const categories: Category[] = [
   "writing",
   "lenny",
   "facepalm",
-  "hiding"
+  "hiding",
 ];

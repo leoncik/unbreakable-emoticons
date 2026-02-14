@@ -1,7 +1,5 @@
 # Unbreakable emoticons
 
-![Under construction](./docs/under-construction.gif)
-
 Copy-paste-ready emoticons that never break across lines.
 
 ## About
@@ -13,6 +11,15 @@ No more half-faces on one line and the rest on the next. ☆⁠ヾ⁠(⁠*⁠´�
 ## How to use
 
 Visit the [GitHub page](https://leoncik.github.io/unbreakable-emoticons/) of this project, copy an emoticon, and paste it wherever you want.
+
+## Roadmap
+
+- [x] Make it work.
+- [ ] Make the side-nav collapsible.
+- [ ] Add an about page.
+- [ ] Add a theme toggler.
+- [ ] Add an emoticon maker for custom emoticons.
+- [ ] Create a web extension for easier access.
 
 ## License
 
