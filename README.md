@@ -19,6 +19,7 @@ Visit the [GitHub page](https://leoncik.github.io/unbreakable-emoticons/) of thi
 - [ ] Add an about page.
 - [ ] Add a theme toggler.
 - [ ] Add an emoticon maker for custom emoticons.
+- [ ] Offline support and PWA.
 - [ ] Create a web extension for easier access.
 
 ## License
