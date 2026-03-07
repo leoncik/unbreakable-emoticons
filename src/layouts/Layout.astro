@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Unbreakable emoticons</title>
@@ -106,6 +106,10 @@
     font-family: "Nunito", sans-serif;
   }
 
+  body.curtain-open {
+    overflow: hidden;
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -131,7 +135,7 @@
           navLinks.forEach((link) => {
             link.classList.toggle(
               "is-active",
-              link.getAttribute("href") === `#${id}`
+              link.getAttribute("href") === `#${id}`,
             );
           });
         }
@@ -140,8 +144,34 @@
     {
       rootMargin: "-40% 0px -50% 0px",
       threshold: 0,
-    }
+    },
   );
 
   sections.forEach((section) => observer.observe(section));
+
+  (function curtainClose() {
+    function closeCurtain() {
+      document.body.classList.remove("curtain-open");
+      const toggle = document.querySelector(".menu-toggle");
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      }
+    }
+    const backdrop = document.querySelector(".curtain-backdrop");
+    if (backdrop) {
+      backdrop.addEventListener("click", closeCurtain);
+    }
+    const closeBtn = document.querySelector(".curtain-close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeCurtain);
+    }
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        if (window.matchMedia("(max-width: 767px)").matches) {
+          closeCurtain();
+        }
+      });
+    });
+  })();
 </script>

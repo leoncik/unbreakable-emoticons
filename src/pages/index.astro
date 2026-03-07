@@ -22,6 +22,21 @@ const groupedEmoticons = categories
   <div class="wrapper">
     <Sidenav groupedEmoticons={groupedEmoticons} />
     <main>
+      <header class="mobile-header">
+        <button
+          type="button"
+          class="menu-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span class="menu-toggle-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+        <span class="mobile-header-title">Unbreakable emoticons</span>
+      </header>
       <div class="content-wrapper">
         <header class="about">
           <h1>Unbreakable emoticons</h1>
@@ -80,6 +95,16 @@ const groupedEmoticons = categories
     e.preventDefault();
     copyFromCard(card);
   });
+
+  (function menuToggle() {
+    const toggle = document.querySelector(".menu-toggle");
+    if (!toggle) return;
+    toggle.addEventListener("click", function () {
+      const open = document.body.classList.toggle("curtain-open");
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+  })();
 </script>
 
 <style>
@@ -87,6 +112,10 @@ const groupedEmoticons = categories
     display: flex;
     align-items: flex-start;
     height: 100%;
+  }
+
+  .mobile-header {
+    display: none;
   }
 
   main {
@@ -100,6 +129,74 @@ const groupedEmoticons = categories
     margin-left: auto;
     margin-right: auto;
     padding: 32px;
+  }
+
+  @media (max-width: 767px) {
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background-color: rgb(251, 248, 250);
+      border-bottom: 1px solid rgba(234, 215, 224, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--accent-text-color);
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      background-color: hsl(332, 31%, 88%);
+    }
+
+    .menu-toggle-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-toggle-icon span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: currentColor;
+      border-radius: 1px;
+    }
+
+    .mobile-header-title {
+      font-weight: 700;
+      font-size: var(--14px);
+      background-image: linear-gradient(
+        to right,
+        rgb(236, 147, 191),
+        rgb(224, 194, 240)
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .content-wrapper {
+      padding: 16px;
+    }
+
+    .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    }
   }
 
   h1 {
