@@ -2,7 +2,7 @@
   "name": "Unbreakable emoticons",
   "short_name": "Emoticons",
   "description": "Copy-paste-ready \"unbreakable\" emoticons that stay intact across lines using the word joiner (WJ) character.",
-  "start_url": "/",
+  "start_url": "/unbreakable-emoticons/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
