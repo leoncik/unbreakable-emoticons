@@ -6,17 +6,22 @@ export type Category =
   | "angry"
   | "demon"
   | "love"
+  | "kiss"
   | "sparkles"
   | "shocked"
+  | "confused"
+  | "nervous"
   | "tired"
   | "celebration"
   | "cat"
+  | "bear"
   | "shrugs"
   | "tableFlip"
+  | "tableReturn"
   | "greeting"
   | "writing"
-  | "facepalm"
   | "lenny"
+  | "facepalm"
   | "hiding";
 
 export const categoryInfo: Record<
@@ -33,7 +38,11 @@ export const categoryInfo: Record<
     emoji: "( ^ω^ )",
     navIcon: "😊",
   },
-  sad: { label: "Sad & crying", emoji: "(｡•́︿•̀｡)", navIcon: "😢" },
+  sad: {
+    label: "Sad & crying",
+    emoji: "(｡•́︿•̀｡)",
+    navIcon: "😢",
+  },
   blushing: {
     label: "Blushing",
     emoji: "(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄",
@@ -54,6 +63,11 @@ export const categoryInfo: Record<
     emoji: "♡⁠(⁠●⁠´⁠ω⁠`⁠●⁠)⁠♡",
     navIcon: "💕",
   },
+  kiss: {
+    label: "Kiss",
+    emoji: "(づ￣ ³￣)づ",
+    navIcon: "😘",
+  },
   sparkles: {
     label: "Sparkles",
     emoji: "☆⁠*⁠:⁠.⁠｡⁠.⁠o⁠(⁠≧⁠▽⁠≦⁠)⁠o⁠.⁠｡⁠.⁠:⁠*⁠☆",
@@ -63,6 +77,16 @@ export const categoryInfo: Record<
     label: "Shocked",
     emoji: "Σ⁠(⁠°⁠△⁠°⁠|⁠|⁠|⁠)",
     navIcon: "🙀",
+  },
+  confused: {
+    label: "Confused",
+    emoji: "(・・?)",
+    navIcon: "😕",
+  },
+  nervous: {
+    label: "Nervous",
+    emoji: "(;;)",
+    navIcon: "😰",
   },
   tired: {
     label: "Tired & sleepy",
@@ -79,6 +103,11 @@ export const categoryInfo: Record<
     emoji: "ฅ₍^•⩊ •マⳊ",
     navIcon: "🐱",
   },
+  bear: {
+    label: "Bear",
+    emoji: "ʕ•ᴥ•ʔ",
+    navIcon: "🐻",
+  },
   shrugs: {
     label: "Shrugs",
     emoji: "¯\\_(ツ)_/¯",
@@ -88,6 +117,11 @@ export const categoryInfo: Record<
     label: "Table flip",
     emoji: "(⁠╯⁠°⁠□⁠°⁠）⁠╯⁠︵⁠ ⁠┻⁠━⁠┻",
     navIcon: "🪑💥",
+  },
+  tableReturn: {
+    label: "Table return",
+    emoji: "┬─┬ノ( º _ ºノ)",
+    navIcon: "🪑✨",
   },
   greeting: {
     label: "Greeting",
@@ -102,7 +136,7 @@ export const categoryInfo: Record<
   lenny: {
     label: "Lenny",
     emoji: "( ͡° ͜ʖ ͡°)",
-    navIcon: "🍆",
+    navIcon: "😏",
   },
   facepalm: {
     label: "Facepalm",
@@ -124,13 +158,18 @@ export const categories: Category[] = [
   "angry",
   "demon",
   "love",
+  "kiss",
   "sparkles",
   "shocked",
+  "confused",
+  "nervous",
   "tired",
   "celebration",
   "cat",
+  "bear",
   "shrugs",
   "tableFlip",
+  "tableReturn",
   "greeting",
   "writing",
   "lenny",
