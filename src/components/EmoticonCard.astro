@@ -9,16 +9,25 @@ const { emoticon } = Astro.props;
 const unbreakable = makeUnbreakable(emoticon.emoticon);
 ---
 
-<div class="card" data-emoticon={unbreakable} data-copied="false">
+<div
+  class="card"
+  role="button"
+  tabindex="0"
+  aria-label={`Copy ${emoticon.emoticon}`}
+  data-emoticon={unbreakable}
+  data-copied="false"
+>
   <div class="content">
     <div class="emoticon">{unbreakable}</div>
 
-    <button class="copy-button" type="button">
+    <button class="copy-button" type="button" tabindex="-1">
       <span class="label">Copy</span>
+      <span class="label-copied" aria-hidden="true">Copied!</span>
     </button>
   </div>
 
-  <div class="sparkle-overlay">✨</div>
+  <div class="sparkle-overlay" aria-hidden="true">✨</div>
+  <div class="sparkle-overlay sparkle-overlay--late" aria-hidden="true">☆</div>
 </div>
 
 <style>
@@ -26,32 +35,42 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
     position: relative;
     padding: 1rem;
     border-radius: 1rem;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    background: var(--card-bg, #fff);
+    border: 2px solid rgba(236, 147, 191, 0.28);
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(251, 242, 247, 0.92) 100%
+    );
     cursor: pointer;
     transition:
       transform 0.25s ease,
       box-shadow 0.25s ease,
-      border-color 0.25s ease;
+      border-color 0.25s ease,
+      background 0.25s ease;
 
-    /* Prevent text selection on click */
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-
-    /* Prevent tap highlight on mobile */
     -webkit-tap-highlight-color: transparent;
   }
 
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(124, 58, 237, 0.4);
-    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-4px) rotate(-0.4deg);
+    border-color: rgba(236, 147, 191, 0.7);
+    box-shadow: 0 12px 28px rgba(236, 147, 191, 0.22);
+    outline: none;
+  }
+
+  .card:focus-visible {
+    box-shadow:
+      0 0 0 3px rgba(179, 230, 213, 0.7),
+      0 12px 28px rgba(236, 147, 191, 0.22);
   }
 
   .card[data-copied="true"] {
     border-color: #6ee7b7;
-    background: rgba(110, 231, 183, 0.12);
+    background: rgba(110, 231, 183, 0.14);
   }
 
   .content {
@@ -62,58 +81,54 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
     font-weight: 500;
-    user-select: all;
-
     /* Ensure user cannot accidentally select */
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
+    word-break: keep-all;
   }
 
   .copy-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.4rem;
+    min-width: 5.5rem;
     padding: 0.4rem 0.75rem;
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 999px;
     border: none;
-    background: rgba(124, 58, 237, 0.15);
-    color: #4c1d95;
+    background: rgba(236, 147, 191, 0.22);
+    color: hsl(332, 35%, 32%);
     cursor: pointer;
     transition:
       background 0.2s ease,
       color 0.2s ease;
   }
 
-  .card:hover .copy-button {
-    background: #7c3aed;
+  .card:hover .copy-button,
+  .card:focus-visible .copy-button {
+    background: hsl(332, 55%, 62%);
     color: #fff;
   }
 
-  .icon {
-    width: 14px;
-    height: 14px;
-    display: inline-flex;
-  }
-
-  .icon svg {
-    width: 100%;
-    height: 100%;
-    stroke-width: 2;
-  }
-
-  .check-icon {
+  .label-copied {
     display: none;
   }
 
-  .card[data-copied="true"] .copy-icon {
+  .card[data-copied="true"] .label {
     display: none;
   }
 
-  .card[data-copied="true"] .check-icon {
-    display: inline-flex;
+  .card[data-copied="true"] .label-copied {
+    display: inline;
+  }
+
+  .card[data-copied="true"] .copy-button {
+    background: #34d399;
+    color: #064e3b;
   }
 
   .sparkle-overlay {
@@ -127,8 +142,19 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
     opacity: 0;
   }
 
+  .sparkle-overlay--late {
+    font-size: 1.4rem;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0.6rem 0.8rem 0 0;
+  }
+
   .card[data-copied="true"] .sparkle-overlay {
     animation: ping 0.8s ease-out forwards;
+  }
+
+  .card[data-copied="true"] .sparkle-overlay--late {
+    animation: ping 0.8s ease-out 0.12s forwards;
   }
 
   @keyframes ping {

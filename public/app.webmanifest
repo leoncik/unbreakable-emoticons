@@ -4,8 +4,8 @@
   "description": "Copy-paste-ready \"unbreakable\" emoticons that stay intact across lines using the word joiner (WJ) character.",
   "start_url": "/unbreakable-emoticons/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#fbf8fa",
+  "theme_color": "#fbf8fa",
   "icons": [
     {
       "src": "/unbreakable-emoticons/icons/icon-192x192.png",

@@ -1,13 +1,31 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Unbreakable emoticons",
+  description = "Copy-paste-ready kaomojis that stay intact across lines — held together with Word Joiners, no half-faces mid-sentence.",
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <link rel="manifest" href="/unbreakable-emoticons/app.webmanifest" />
-    <title>Unbreakable emoticons</title>
+    <title>{title}</title>
     <!-- Icons -->
-    <link rel="icon" href="/unbreakable-emoticons/favicon.ico" sizes="48x48" />
+    <link
+      rel="icon"
+      href="/unbreakable-emoticons/favicon.png"
+      type="image/png"
+      sizes="48x48"
+    />
     <link
       rel="icon"
       href="/unbreakable-emoticons/icons/icon-192x192.png"
@@ -20,55 +38,55 @@
       type="image/png"
       sizes="512x512"
     />
-    <link rel="apple-touch-icon" href="/unbreakable-emoticons/icons/icon-180x180.png" />
+    <link
+      rel="apple-touch-icon"
+      href="/unbreakable-emoticons/icons/icon-180x180.png"
+    />
     <!-- Theme color -->
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#fbf8fa" />
     <!-- Apple-specific properties -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Unbreakable emoticons" />
   </head>
   <body>
+    <div class="atmosphere" aria-hidden="true"></div>
     <slot />
   </body>
 </html>
 
 <style is:global>
-  /* nunito-regular - latin */
   @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-display: swap;
     font-family: "Nunito";
     font-style: normal;
     font-weight: 400;
     src: url("../assets/fonts/nunito/nunito-v32-latin-regular.woff2")
-      format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      format("woff2");
   }
-  /* nunito-500 - latin */
   @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-display: swap;
     font-family: "Nunito";
     font-style: normal;
     font-weight: 500;
     src: url("../assets/fonts/nunito/nunito-v32-latin-500.woff2")
-      format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      format("woff2");
   }
-  /* nunito-600 - latin */
   @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-display: swap;
     font-family: "Nunito";
     font-style: normal;
     font-weight: 600;
     src: url("../assets/fonts/nunito/nunito-v32-latin-600.woff2")
-      format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      format("woff2");
   }
-  /* nunito-800 - latin */
   @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-display: swap;
     font-family: "Nunito";
     font-style: normal;
     font-weight: 800;
     src: url("../assets/fonts/nunito/nunito-v32-latin-800.woff2")
-      format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      format("woff2");
   }
 
   *,
@@ -78,13 +96,10 @@
   }
 
   body {
-    /* Add accessible line-height */
     line-height: 1.5;
-    /* Improve text rendering */
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Improve media defaults */
   img,
   picture,
   video,
@@ -94,7 +109,6 @@
     max-width: 100%;
   }
 
-  /*Inherit fonts for form controls */
   input,
   button,
   textarea,
@@ -103,8 +117,13 @@
   }
 
   :root {
-    --default-text-color: hsl(279, 20%, 45%);
-    --accent-text-color: hsl(279, 30%, 25%);
+    --default-text-color: hsl(279, 20%, 40%);
+    --accent-text-color: hsl(320, 28%, 28%);
+    --rose: rgb(236, 147, 191);
+    --lilac: rgb(224, 194, 240);
+    --mint: rgb(179, 230, 213);
+    --page-bg: rgb(251, 248, 250);
+    --panel-bg: rgb(248, 242, 245);
     --12px: 0.75rem;
     --14px: 0.875rem;
     --18px: 1.125rem;
@@ -115,7 +134,7 @@
     margin: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(251, 248, 250);
+    background-color: var(--page-bg);
     color: var(--default-text-color);
   }
 
@@ -125,6 +144,53 @@
 
   body {
     font-family: "Nunito", sans-serif;
+    position: relative;
+  }
+
+  .atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        48rem 32rem at 12% -8%,
+        rgba(236, 147, 191, 0.28),
+        transparent 60%
+      ),
+      radial-gradient(
+        40rem 28rem at 92% 8%,
+        rgba(179, 230, 213, 0.3),
+        transparent 55%
+      ),
+      radial-gradient(
+        36rem 30rem at 70% 95%,
+        rgba(224, 194, 240, 0.26),
+        transparent 55%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35),
+        rgba(251, 248, 250, 0.9)
+      );
+  }
+
+  .atmosphere::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.35;
+    background-image: radial-gradient(
+      rgba(236, 147, 191, 0.14) 0.8px,
+      transparent 0.8px
+    );
+    background-size: 18px 18px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+
+  body > :not(.atmosphere) {
+    position: relative;
+    z-index: 1;
   }
 
   body.curtain-open {
@@ -159,6 +225,8 @@
               link.getAttribute("href") === `#${id}`,
             );
           });
+
+          entry.target.classList.add("is-in-view");
         }
       });
     },
@@ -169,6 +237,19 @@
   );
 
   sections.forEach((section) => observer.observe(section));
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
+  );
+  sections.forEach((section) => revealObserver.observe(section));
 
   (function curtainClose() {
     function closeCurtain() {

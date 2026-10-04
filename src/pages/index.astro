@@ -16,6 +16,14 @@ const groupedEmoticons = categories
       })) || [],
   }))
   .filter(({ emoticons }) => emoticons.length > 0);
+
+const firstCategory = groupedEmoticons[0]?.category ?? "smiley";
+const floatingFaces = [
+  "ʕ•ᴥ•ʔ",
+  "(づ￣ ³￣)づ",
+  "¯\\_(ツ)_/¯",
+  "٩(◕‿◕)۶",
+];
 ---
 
 <Layout>
@@ -38,9 +46,23 @@ const groupedEmoticons = categories
         <span class="mobile-header-title">Unbreakable emoticons</span>
       </header>
       <div class="content-wrapper">
-        <header class="about">
+        <header class="hero">
+          <div class="hero-sky" aria-hidden="true">
+            {
+              floatingFaces.map((face, index) => (
+                <span class={`floater floater-${index + 1}`}>{face}</span>
+              ))
+            }
+          </div>
           <h1>Unbreakable emoticons</h1>
-          <p>Copy-paste-ready emoticons that stay intact across lines!</p>
+          <p class="hero-tagline">
+            Copy-paste-ready kaomojis that stay intact across lines.
+          </p>
+          <a class="hero-cta" href={`#${firstCategory}`}>
+            <span class="hero-cta-sparkle" aria-hidden="true">✦</span>
+            Pick a mood
+            <span class="hero-cta-sparkle" aria-hidden="true">✦</span>
+          </a>
         </header>
 
         <div class="sections">
@@ -52,7 +74,9 @@ const groupedEmoticons = categories
                     {categoryInfo[category].emoji}
                   </span>
                   <span>{categoryInfo[category].label}</span>
-                  <span class="emoticon-count">({catEmoticons.length})</span>
+                  <span class="emoticon-count">
+                    {catEmoticons.length} little faces
+                  </span>
                 </h2>
                 <div class="gallery">
                   {catEmoticons.map((emoticon) => (
@@ -71,11 +95,43 @@ const groupedEmoticons = categories
 <script is:inline>
   const COPY_DURATION = 1500;
 
-  function copyFromCard(card) {
+  function fallbackCopy(text) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.left = "-9999px";
+    document.body.appendChild(area);
+    area.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (_) {
+      ok = false;
+    }
+    document.body.removeChild(area);
+    return ok;
+  }
+
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        /* fall through */
+      }
+    }
+    return fallbackCopy(text);
+  }
+
+  async function copyFromCard(card) {
     const text = card.dataset.emoticon;
     if (!text) return;
 
-    navigator.clipboard.writeText(text);
+    const ok = await copyText(text);
+    if (!ok) return;
+
     card.dataset.copied = "true";
     setTimeout(() => {
       card.dataset.copied = "false";
@@ -91,7 +147,7 @@ const groupedEmoticons = categories
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     const card = e.target.closest(".card");
-    if (!card) return;
+    if (!card || e.target !== card) return;
     e.preventDefault();
     copyFromCard(card);
   });
@@ -131,13 +187,209 @@ const groupedEmoticons = categories
     padding: 32px;
   }
 
+  .hero {
+    position: relative;
+    text-align: center;
+    margin-bottom: 56px;
+    padding: 48px 24px 40px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 236, 245, 0.55) 45%,
+      rgba(230, 248, 242, 0.55)
+    );
+    border: 1px solid rgba(236, 147, 191, 0.25);
+    box-shadow: 0 18px 40px rgba(224, 180, 205, 0.12);
+  }
+
+  .hero-sky {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .floater {
+    position: absolute;
+    font-size: clamp(1rem, 2.2vw, 1.35rem);
+    opacity: 0.55;
+    filter: blur(0.1px);
+    animation: drift 9s ease-in-out infinite;
+    white-space: nowrap;
+  }
+
+  .floater-1 {
+    top: 14%;
+    left: 6%;
+    animation-delay: 0s;
+  }
+  .floater-2 {
+    top: 22%;
+    right: 8%;
+    animation-delay: -1.5s;
+  }
+  .floater-3 {
+    bottom: 18%;
+    left: 12%;
+    animation-delay: -3s;
+  }
+  .floater-4 {
+    bottom: 14%;
+    right: 14%;
+    animation-delay: -4.5s;
+  }
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+  }
+
+  h1 {
+    position: relative;
+    margin: 0 0 12px;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background-image: linear-gradient(
+      to right,
+      rgb(236, 147, 191),
+      rgb(224, 194, 240),
+      rgb(179, 230, 213)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero-tagline {
+    position: relative;
+    max-width: 34rem;
+    margin: 0 auto 24px;
+    font-size: 1.1rem;
+  }
+
+  .hero-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    color: rgb(236, 147, 191);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid rgb(236, 147, 191);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.8) inset,
+      0 6px 18px rgba(236, 147, 191, 0.18);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .hero-cta-sparkle {
+    font-size: 0.7rem;
+    opacity: 0.75;
+    animation: twinkle 2.4s ease-in-out infinite;
+  }
+
+  .hero-cta-sparkle:last-child {
+    animation-delay: -1.2s;
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    background: #fff;
+    border-color: rgb(224, 130, 180);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 10px 24px rgba(236, 147, 191, 0.28);
+  }
+
+  .hero-cta:active {
+    transform: translateY(0);
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease;
+  }
+
+  .category-section.is-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: var(--accent-text-color);
+  }
+
+  .category-emoji {
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .emoticon-count {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: hsl(300, 10%, 48%);
+  }
+
+  .gallery {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  }
+
   @media (max-width: 767px) {
     .mobile-header {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 12px 16px;
-      background-color: rgb(251, 248, 250);
+      background-color: rgba(251, 248, 250, 0.92);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(234, 215, 224, 0.5);
       position: sticky;
       top: 0;
@@ -194,66 +446,28 @@ const groupedEmoticons = categories
       padding: 16px;
     }
 
+    .hero {
+      padding: 36px 16px 28px;
+      margin-bottom: 36px;
+    }
+
+    .floater {
+      opacity: 0.35;
+    }
+
     .gallery {
       grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
     }
   }
 
-  h1 {
-    font-size: 3rem;
-    background-image: linear-gradient(
-      to right,
-      rgb(236, 147, 191),
-      rgb(224, 194, 240),
-      rgb(179, 230, 213)
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-
-  .about {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
-  .sections {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  }
-
-  .category-section {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .category-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent-text-color);
-  }
-
-  .category-emoji {
-    font-size: 1.5rem;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .emoticon-count {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: #999;
-  }
-
-  .gallery {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  @media (prefers-reduced-motion: reduce) {
+    .floater,
+    .hero-cta-sparkle,
+    .category-section {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>

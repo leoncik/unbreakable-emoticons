@@ -40,10 +40,12 @@ const { groupedEmoticons } = Astro.props;
           ></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path
             d="M4 17v2"></path><path d="M5 18H3"></path></svg
         >
-        <span>Categories</span>
+        <div class="header-copy">
+          <span>Mood menu</span>
+        </div>
       </div>
       <div class="nav-list-wrapper">
-        <p class="nav-list-title">Jump to section</p>
+        <p class="nav-list-title">Skip to a feeling</p>
         <ul class="nav-list">
           {
             groupedEmoticons.map(({ category, emoticons: catEmoticons }) => (
@@ -65,7 +67,12 @@ const { groupedEmoticons } = Astro.props;
 <style>
   .wrapper {
     height: 100%;
-    background-color: rgb(248, 242, 245);
+    background: linear-gradient(
+      180deg,
+      rgba(248, 242, 245, 0.96),
+      rgba(245, 236, 242, 0.92)
+    );
+    border-right: 1px solid rgba(234, 215, 224, 0.55);
   }
 
   .curtain-backdrop {
@@ -174,22 +181,45 @@ const { groupedEmoticons } = Astro.props;
   .sparkle-svg {
     width: 1.25rem;
     height: 1.25rem;
-    color: hsl(330 70% 75%);
+    color: hsl(330 70% 68%);
+    flex-shrink: 0;
+    animation: twinkle 2.8s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      transform: rotate(0deg) scale(1);
+      opacity: 0.85;
+    }
+    50% {
+      transform: rotate(8deg) scale(1.08);
+      opacity: 1;
+    }
   }
 
   .header {
     position: sticky;
     top: 0;
     z-index: 2;
-    background-color: rgb(248, 242, 245);
+    background: linear-gradient(
+      180deg,
+      rgba(248, 242, 245, 0.98),
+      rgba(248, 242, 245, 0.92)
+    );
     padding: 16px;
     border-bottom: 1px solid rgba(234, 215, 224, 0.5);
     display: flex;
     gap: 12px;
+    align-items: center;
     font-weight: 700;
   }
 
-  .header span {
+  .header-copy {
+    min-width: 0;
+  }
+
+  .header-copy span {
     background-image: linear-gradient(
       to right,
       rgb(236, 147, 191),
