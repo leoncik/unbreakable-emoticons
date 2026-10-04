@@ -69,8 +69,13 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
   }
 
   .card[data-copied="true"] {
-    border-color: #6ee7b7;
-    background: rgba(110, 231, 183, 0.14);
+    border-color: rgba(244, 196, 214, 0.95);
+    background: linear-gradient(
+      160deg,
+      rgba(255, 252, 253, 0.98) 0%,
+      rgba(255, 228, 238, 0.55) 55%,
+      rgba(255, 240, 232, 0.45) 100%
+    );
   }
 
   .content {
@@ -127,8 +132,8 @@ const unbreakable = makeUnbreakable(emoticon.emoticon);
   }
 
   .card[data-copied="true"] .copy-button {
-    background: #34d399;
-    color: #064e3b;
+    background: rgba(244, 196, 214, 0.7);
+    color: hsl(332, 28%, 38%);
   }
 
   .sparkle-overlay {
